@@ -153,6 +153,7 @@ class Process implements Runnable {
 }
 
 public class SchedulerSimulation {
+    static int contextSwitchCount = 0; // feature 2: Count the number of context switches
 
     public static void main(String[] args) {
         // ⚠️ IMPORTANT: Put your student ID here to seed the random number generator
@@ -231,6 +232,7 @@ public class SchedulerSimulation {
         while (!processQueue.isEmpty()) {
             // Get the next thread from the queue (FIFO)
             Thread currentThread = processQueue.poll(); // Dequeues the next thread
+            contextSwitchCount++; // feature 2
 
             // Print the current process queue (list of process IDs in the queue)
             System.out.println(Colors.BOLD + Colors.MAGENTA + "┌─ Ready Queue " + "─".repeat(65) + Colors.RESET);
@@ -291,6 +293,7 @@ public class SchedulerSimulation {
         System.out.println(Colors.BOLD + Colors.BRIGHT_GREEN +
                 "╚════════════════════════════════════════════════════════════════════════════════╝" +
                 Colors.RESET + "\n");
+                1 context switches: + contextSwitchCount); // feature 2: 
     }
 
     // Method to add a process to the queue and map, while printing a "ready"
